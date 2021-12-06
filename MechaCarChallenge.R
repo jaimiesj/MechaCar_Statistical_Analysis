@@ -7,8 +7,11 @@ suspension <- read.csv(file='Suspension_Coil.csv',check.names=F,stringsAsFactors
 library(tidyverse)
 total_summary <- suspension %>% summarize(Mean_Psi=mean(PSI), Median_Psi=median(PSI), var_PSI=var(PSI), sd_PSI=sd(PSI), .groups = 'keep')
 lot_summary <- suspension %>% group_by(Manufacturing_Lot) %>% summarize(Mean_Psi=mean(PSI), Median_Psi=median(PSI), var_PSI=var(PSI), sd_PSI=sd(PSI), .groups = 'keep')
+
 t.test(suspension$PSI, mu=1500)
-Lot_1 <- subset(suspension$PSI, suspension$Manufacturing_Lot == "Lot 1")
-t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot 1")
-t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot 2")
-t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot 3")
+
+t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot1")
+t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot2")
+t.test(suspension$PSI, mu=1500, subset= suspension$Manufacturing_Lot == "Lot3")
+
+t.test(suspension$PSI, mu=1500, subset= Manufacturing_Lot == "Lot1")
